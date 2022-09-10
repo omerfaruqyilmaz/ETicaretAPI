@@ -20,4 +20,5 @@ namespace ETicaretAPI.Application.Exceptions
         {
         }
     }
+
 }

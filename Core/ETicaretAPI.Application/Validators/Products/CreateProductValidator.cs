@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Validators.Products
 {
-    public class CreateProductValidator:AbstractValidator<VMCreateProduct>
+    public class CreateProductValidator:AbstractValidator<VM_Create_Product>
     {
         public CreateProductValidator()
         {

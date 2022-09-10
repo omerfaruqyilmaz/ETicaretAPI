@@ -13,6 +13,13 @@ using ETicaretAPI.Application.Repositories.File;
 using ETicaretAPI.Persistence.Repositories.File;
 using ETicaretAPI.Application.Repositories.ProductImagesFile;
 using ETicaretAPI.Domain.Entities.Identity;
+using ETicaretAPI.Persistence.Services;
+using ETicaretAPI.Application.Abstractions.Services;
+using ETicaretAPI.Application.Abstractions.Services.Authentication;
+using ETicaretAPI.Application.Repositories.BasketItem;
+using ETicaretAPI.Persistence.Repositories.BasketItem;
+using ETicaretAPI.Application.Repositories.Basket;
+using ETicaretAPI.Persistence.Repositories.Basket;
 
 namespace ETicaretAPI.Persistence
 {
@@ -43,6 +50,17 @@ namespace ETicaretAPI.Persistence
             services.AddScoped<IInvoiceFileWriteRepository,InvoiceFileWriteRepository>();
             services.AddScoped<IProductImageFileReadRepository, ProductImageFileReadRepository>();
             services.AddScoped<IProductImageFileWriteRepository,ProductImageFileWriteRepository>();
+           
+            services.AddScoped<IBasketItemReadRepository, BasketItemReadRepository>();
+            services.AddScoped<IBasketItemWriteRepository, BasketItemWriteRepository>();
+            services.AddScoped<IBasketReadRepository, BasketReadRepository>();
+            services.AddScoped<IBasketWriteRepository, BasketWriteRepository>();
+
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IExternalAuthentication, AuthService>();
+            services.AddScoped<IInternalAuthentication, AuthService>();
+            services.AddScoped<Application.Abstractions.Services.IUserService, UserService>();
+            services.AddScoped<IBasketService, BasketService>();
 
 
         }
