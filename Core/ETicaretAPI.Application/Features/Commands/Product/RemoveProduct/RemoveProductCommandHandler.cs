@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.Application.Features.Commands.Product.RemoveProduct
 {
-    public partial class RemoveProductCommandHandler : IRequestHandler<RemoveProductCommandRequest, RemoveProductCommandResponse>
+    public class RemoveProductCommandHandler : IRequestHandler<RemoveProductCommandRequest, RemoveProductCommandResponse>
     {
         readonly IProductWriteRepository _productWriteRepository;
 

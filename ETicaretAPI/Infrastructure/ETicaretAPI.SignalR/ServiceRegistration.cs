@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace ETicaretAPI.SignalR
 {
+
     public static class ServiceRegistration
     {
         public static void AddSignalRServices(this IServiceCollection collection)

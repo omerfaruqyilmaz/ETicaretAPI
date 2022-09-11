@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity;
 
 namespace ETicaretAPI.Application.Features.Commands.AppUser.GoogleLogin
 {
-
     public class GoogleLoginCommandHandler : IRequestHandler<GoogleLoginCommandRequest, GoogleLoginCommandResponse>
     {
         readonly IAuthService _authService;
@@ -18,12 +17,11 @@ namespace ETicaretAPI.Application.Features.Commands.AppUser.GoogleLogin
 
         public async Task<GoogleLoginCommandResponse> Handle(GoogleLoginCommandRequest request, CancellationToken cancellationToken)
         {
-            var token = await _authService.GoogleLoginAsync(request.Id, 900);
+            var token = await _authService.GoogleLoginAsync(request.IdToken, 900);
             return new()
             {
                 Token = token
             };
         }
-
     }
 }

@@ -14,8 +14,6 @@ namespace ETicaretAPI.API.Controllers
             _configuration = configuration;
         }
 
-        
-
         [HttpGet("[action]")]
         public IActionResult GetBaseStorageUrl()
         {
@@ -24,5 +22,6 @@ namespace ETicaretAPI.API.Controllers
                 Url = _configuration["BaseStorageUrl"]
             });
         }
+
     }
 }

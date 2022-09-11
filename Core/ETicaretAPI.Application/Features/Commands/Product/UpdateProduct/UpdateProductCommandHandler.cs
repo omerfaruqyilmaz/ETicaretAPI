@@ -4,15 +4,14 @@ using Microsoft.Extensions.Logging;
 
 namespace ETicaretAPI.Application.Features.Commands.Product.UpdateProduct
 {
+
     public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest, UpdateProductCommandResponse>
     {
         readonly IProductReadRepository _productReadRepository;
         readonly IProductWriteRepository _productWriteRepository;
         readonly ILogger<UpdateProductCommandHandler> _logger;
 
-        public UpdateProductCommandHandler(IProductReadRepository productReadRepository,
-            IProductWriteRepository productWriteRepository, ILogger<UpdateProductCommandHandler> logger)
-
+        public UpdateProductCommandHandler(IProductReadRepository productReadRepository, IProductWriteRepository productWriteRepository, ILogger<UpdateProductCommandHandler> logger)
         {
             _productReadRepository = productReadRepository;
             _productWriteRepository = productWriteRepository;

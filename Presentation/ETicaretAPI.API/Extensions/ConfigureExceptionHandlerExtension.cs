@@ -7,7 +7,7 @@ namespace ETicaretAPI.API.Extensions
 {
     static public class ConfigureExceptionHandlerExtension
     {
-        public static void ConfigureExceptionHandler<T>(this WebApplication application,ILogger<T> logger)
+        public static void ConfigureExceptionHandler<T>(this WebApplication application, ILogger<T> logger)
         {
             application.UseExceptionHandler(builder =>
             {
@@ -15,8 +15,9 @@ namespace ETicaretAPI.API.Extensions
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     context.Response.ContentType = MediaTypeNames.Application.Json;
+
                     var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
-                    if(contextFeature != null)
+                    if (contextFeature != null)
                     {
                         logger.LogError(contextFeature.Error.Message);
 
@@ -24,8 +25,8 @@ namespace ETicaretAPI.API.Extensions
                         {
                             StatusCode = context.Response.StatusCode,
                             Message = contextFeature.Error.Message,
-                            Title = "Hata Alındı"
-                        }));
+                            Title = "Hata alındı!"
+                        })); ;
                     }
                 });
             });

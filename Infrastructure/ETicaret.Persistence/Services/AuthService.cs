@@ -61,7 +61,7 @@ namespace ETicaretAPI.Persistence.Services
 
             if (result)
             {
-                await _userManager.AddLoginAsync(user, info); //AspNetUserLogins
+                await _userManager.AddLoginAsync(user, info); 
 
                 Token token = _tokenHandler.CreateAccessToken(accessTokenLifeTime, user);
                 await _userService.UpdateRefreshToken(token.RefreshToken, user, token.Expiration, 15);

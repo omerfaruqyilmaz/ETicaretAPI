@@ -2,7 +2,7 @@
 {
     public class NotFoundUserException : Exception
     {
-        public NotFoundUserException() : base("Kullanıcı adı veya şifre hatalı!")
+        public NotFoundUserException() : base("Kullanıcı adı veya şifre hatalı.")
         {
         }
 

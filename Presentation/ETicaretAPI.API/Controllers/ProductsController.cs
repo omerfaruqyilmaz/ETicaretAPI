@@ -26,18 +26,18 @@ namespace ETicaretAPI.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
     public class ProductsController : ControllerBase
-    {       
+    {
         readonly IMediator _mediator;
+        readonly ILogger<ProductsController> _logger;
 
-        public ProductsController(IMediator mediator)
-        {           
+        public ProductsController(IMediator mediator, ILogger<ProductsController> logger)
+        {
             _mediator = mediator;
+            _logger = logger;
         }
 
         [HttpGet]
-
         public async Task<IActionResult> Get([FromQuery] GetAllProductQueryRequest getAllProductQueryRequest)
         {
             GetAllProductQueryResponse response = await _mediator.Send(getAllProductQueryRequest);
@@ -45,7 +45,6 @@ namespace ETicaretAPI.API.Controllers
         }
 
         [HttpGet("{Id}")]
-
         public async Task<IActionResult> Get([FromRoute] GetByIdProductQueryRequest getByIdProductQueryRequest)
         {
             GetByIdProductQueryResponse response = await _mediator.Send(getByIdProductQueryRequest);
@@ -54,7 +53,7 @@ namespace ETicaretAPI.API.Controllers
 
         [HttpPost]
         [Authorize(AuthenticationSchemes = "Admin")]
-        public async Task<IActionResult> Post([FromBody] CreateProductCommandRequest createProductCommandRequest)
+        public async Task<IActionResult> Post(CreateProductCommandRequest createProductCommandRequest)
         {
             CreateProductCommandResponse response = await _mediator.Send(createProductCommandRequest);
             return StatusCode((int)HttpStatusCode.Created);
@@ -62,7 +61,7 @@ namespace ETicaretAPI.API.Controllers
 
         [HttpPut]
         [Authorize(AuthenticationSchemes = "Admin")]
-        public async Task<IActionResult> Put(UpdateProductCommandRequest updateProductCommandRequest)
+        public async Task<IActionResult> Put([FromBody] UpdateProductCommandRequest updateProductCommandRequest)
         {
             UpdateProductCommandResponse response = await _mediator.Send(updateProductCommandRequest);
             return Ok();
@@ -70,22 +69,19 @@ namespace ETicaretAPI.API.Controllers
 
         [HttpDelete("{Id}")]
         [Authorize(AuthenticationSchemes = "Admin")]
-
         public async Task<IActionResult> Delete([FromRoute] RemoveProductCommandRequest removeProductCommandRequest)
         {
             RemoveProductCommandResponse response = await _mediator.Send(removeProductCommandRequest);
             return Ok();
         }
 
-
         [HttpPost("[action]")]
         [Authorize(AuthenticationSchemes = "Admin")]
         public async Task<IActionResult> Upload([FromQuery] UploadProductImageCommandRequest uploadProductImageCommandRequest)
         {
             uploadProductImageCommandRequest.Files = Request.Form.Files;
-            UploadProductImageCommandResponse response = await _mediator.Send(uploadProductImageCommandRequest);          
+            UploadProductImageCommandResponse response = await _mediator.Send(uploadProductImageCommandRequest);
             return Ok();
-
         }
 
         [HttpGet("[action]/{id}")]
@@ -99,7 +95,7 @@ namespace ETicaretAPI.API.Controllers
         [HttpDelete("[action]/{id}")]
         [Authorize(AuthenticationSchemes = "Admin")]
         public async Task<IActionResult> DeleteProductImage([FromRoute] RemoveProductImageCommandRequest removeProductImageCommandRequest, [FromQuery] string imageId)
-        {
+        {        
             removeProductImageCommandRequest.ImageId = imageId;
             RemoveProductImageCommandResponse response = await _mediator.Send(removeProductImageCommandRequest);
             return Ok();

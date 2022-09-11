@@ -26,10 +26,10 @@ namespace ETicaretAPI.Infrastructure.Services.Token
         {
             Application.DTOs.Token token = new();
 
-
+            
             SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_configuration["Token:SecurityKey"]));
 
-
+            
             SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha256);
 
             
@@ -43,11 +43,11 @@ namespace ETicaretAPI.Infrastructure.Services.Token
                 claims: new List<Claim> { new(ClaimTypes.Name, user.UserName) }
                 );
 
-
+            
             JwtSecurityTokenHandler tokenHandler = new();
             token.AccessToken = tokenHandler.WriteToken(securityToken);
 
-            //string refreshToken = CreateRefreshToken();
+            
 
             token.RefreshToken = CreateRefreshToken();
             return token;

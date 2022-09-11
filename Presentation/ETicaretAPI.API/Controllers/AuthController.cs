@@ -13,14 +13,11 @@ namespace ETicaretAPI.API.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-
         readonly IMediator _mediator;
-
         public AuthController(IMediator mediator)
         {
             _mediator = mediator;
         }
-
         [HttpPost("[action]")]
         public async Task<IActionResult> Login(LoginUserCommandRequest loginUserCommandRequest)
         {
@@ -29,7 +26,7 @@ namespace ETicaretAPI.API.Controllers
         }
 
         [HttpPost("[action]")]
-        public async Task<IActionResult> RefreshToken([FromBody]RefreshTokenLoginCommandRequest refreshTokenLoginCommandRequest)
+        public async Task<IActionResult> RefreshTokenLogin([FromBody] RefreshTokenLoginCommandRequest refreshTokenLoginCommandRequest)
         {
             RefreshTokenLoginCommandResponse response = await _mediator.Send(refreshTokenLoginCommandRequest);
             return Ok(response);
@@ -41,6 +38,7 @@ namespace ETicaretAPI.API.Controllers
             GoogleLoginCommandResponse response = await _mediator.Send(googleLoginCommandRequest);
             return Ok(response);
         }
+
         [HttpPost("facebook-login")]
         public async Task<IActionResult> FacebookLogin(FacebookLoginCommandRequest facebookLoginCommandRequest)
         {

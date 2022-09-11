@@ -12,11 +12,7 @@ namespace ETicaretAPI.Application.DTOs.Facebook
     {
         [JsonPropertyName("data")]
         public FacebookUserAccessTokenValidationData Data { get; set; }
-        
     }
-
-
-
     public class FacebookUserAccessTokenValidationData
     {
         [JsonPropertyName("is_valid")]

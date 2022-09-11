@@ -10,7 +10,7 @@ using ETicaretAPI.Infrastructure.Services.Storage;
 
 namespace ETicaretAPI.Infrastructure.Services.Local
 {
-    public class LocalStorage : Infrastructure.Services.Storage.Storage, ILocalStorage
+    public class LocalStorage :Infrastructure.Services.Storage.Storage, ILocalStorage
     {
         private readonly IWebHostEnvironment _webHostEnvironment;
         public LocalStorage(IWebHostEnvironment webHostEnvironment)
@@ -59,9 +59,7 @@ namespace ETicaretAPI.Infrastructure.Services.Local
                 datas.Add((fileNewName, $"{path}\\{fileNewName}"));
             }
 
-            return datas; 
-
-            
+            return datas;
         }
     }
 }
